@@ -1,15 +1,22 @@
+from rich.console import Console
+
+console = Console()
 
 number = int(input("Son kiriting: "))
+
 def is_even(number):
-    result = number % 2
+    result = number % 2 == 0
 
     return result
 
-even_num = is_even(number)
+result = is_even(number)
 
-if even_num == 0:
-    print(f"Kiritilgan {number} son (JUFT) son")
+def print_even_message(result):
 
+    if result:
+        console.print(f"Kiritilgan {number} son (JUFT) son", style="bold magenta")
 
-else:
-    print(f"Kiritilgan {number} son (TOQ) son")
+    else:
+        console.print(f"Kiritilgan {number} son (TOQ) son", style="bold red")
+
+print_even_message(result)

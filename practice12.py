@@ -1,60 +1,49 @@
-#BMI= vazn(kg) / bo`y(m) **2
+from rich.console import Console
 
-# BMI STATUSLARINI COMMENTGA YOZIB QUYDIM KERAKLI BO`LADI!
-
-#< 18.5 → Vazn yetarli emas (Underweight)
-#18.5 – 24.9 → Normal vazn
-#25 – 29.9 → Ortiqcha vazn (Overweight)
-#30 va undan yuqori → Semizlik (Obesity)
-
+console = Console()
 
 def calculate_bmi(weight, height):
-    bmi =  weight / pow(height, 2)
+    bmi = weight / pow(height, 2)
     return bmi
 
 def bmi_status(bmi):
     if bmi < 18.5:
-        return f"BMI: {bmi:.2f} Vazn yetarli emas (Underweight)"
-    
-    elif 18.5 <= bmi < 25 :
-        return f"BMI: {bmi:.2f} Normal vazn"
-    
-    elif 25 <= bmi < 30 :
-        return f"BMI: {bmi:.2f} Ortiqcha vazn (Overweight)"
-    
-    elif  bmi >= 30 :
-        return f"BMI: {bmi:.2f} Semizlik (Obesity)"
+        return f"BMI: {bmi:.2f} Vazn yetarli emas (Underweight)", "yellow"
+    elif 18.5 <= bmi < 25:
+        return f"BMI: {bmi:.2f} Normal vazn", "green"
+    elif 25 <= bmi < 30:
+        return f"BMI: {bmi:.2f} Ortiqcha vazn (Overweight)", "magenta"
+    elif bmi >= 30:
+        return f"BMI: {bmi:.2f} Semizlik (Obesity)", "red"
 
 def main():
-
     while True:
-        
-        weight = float(input("Vazn kiriting(kg): "))      
-        height = float(input("Bo`yingizni kiriting(metr): "))
-        
+
+        weight = float(console.input("[bold cyan]Vazn kiriting (kg): [/bold cyan]"))
+        height = float(console.input("[bold cyan]Bo`yingizni kiriting (metr): [/bold cyan]"))
+
         bmi = calculate_bmi(weight, height)
-        status = bmi_status(bmi)
+        status_text, status_color = bmi_status(bmi)
 
-        print(status)
+        console.print(status_text, style=status_color)
 
-        if weight != "" and not weight < 0 and height != "" and not height < 0:
-            print("Amaliyot muvofaqqiyatli yakunlandi! ")
-            
+        if weight > 0 and height > 0:
+            console.print("Amaliyot muvofaqqiyatli yakunlandi!", style="bold green")
         else:
-            print("Vazn yoki bo`y kiritilmagan yoki hato kiritilgan!")
-        
-        print("BMI tekshiruvi tugatilsinmi? ")
-        print("1. ha")
-        print("2. yo`q")
+            console.print("Vazn yoki bo`y kiritilmagan yoki hato kiritilgan!", style="bold red")
 
-        choise = input("> ")
+        console.print("\nBMI tekshiruvi tugatilsinmi?", style="yellow")
+        console.print("1. Ha", style="cyan")
+        console.print("2. Yo`q", style="cyan")
 
-        if choise == "1":
-            print("BMI hisoblash dasturi tugatildi!")
+        choice = console.input("[bold yellow]> [/bold yellow]")
+
+        if choice == "1":
+            console.print("BMI hisoblash dasturi tugatildi!", style="bold red")
             break
-        elif choise == "2":
+        elif choice == "2":
             continue
         else:
-            print("Faqat (1) yoki (2) ni tanlang")
+            console.print("Faqat (1) yoki (2) ni tanlang!", style="bold red")
 
 main()

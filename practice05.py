@@ -1,16 +1,24 @@
+from rich.console import Console
+
+console = Console()
+
 secret = 23
-guess = int(input("Taxminingiz: "))
+
 
 def check_guess(secret, guess):
     
-    if guess < secret:
-        print("Secret son kattaroq! ")
+    result = guess == secret
+
+    return result
     
-    elif guess > secret:
-        print("Secret son kichikroq! ")  
+def print_result(is_correct):
 
+    if result:
+        console.print(f"Siz Secret sonni topdingiz! U son {secret} edi", style="green")
+    
     else:
-        print(f"Siz Secret sonni topdingiz! U son {secret} edi")
-        
+        console.print("Siz Yashirin sonni topa olmadingiz! ", style="red")
 
-check_guess(secret, guess)
+guess = int(input("Taxminingiz: "))
+result = check_guess(secret, guess)
+print_result(result)

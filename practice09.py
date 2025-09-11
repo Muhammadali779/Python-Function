@@ -1,13 +1,18 @@
+from rich.console import Console
+
+console = Console()
+
+
 def show_menu():
-    print("""
+    console.print("""
 |-----------------MENU-----------------|
 | 1 - deposit (Pul To`ldirish)         |
 | 2 - withdraw (Pul yechish)           |
-| 3 - check_balance(Pulni tekshirish)  |
+| 3 - check_balance (Pulni tekshirish) |
 | 4 - Amaliyotni yakunlash             |
 |______________________________________|
           
-""")
+""", style="bold cyan")
     
 def deposit(balance, amount):
     if amount > 0:
@@ -18,11 +23,11 @@ def withdraw(balance, amount):
     if amount <= balance:
         balance -= amount
     else:
-        print("Mablag` yetarli emas!")
+        console.print("Mablag` yetarli emas!", style="red")
     return balance
 
 def check_balance(balance):
-    print(f"Balansingiz: {balance}")
+    console.print(f"Balansingiz: {balance}", style="green")
 
 def main():
 
@@ -44,11 +49,11 @@ def main():
             check_balance(balance)
 
         elif check == "4":
-            print("Amaliyot yakunlandi! ")
+            console.print("Amaliyot yakunlandi! ", style="bold cyan")
 
             break
 
         else:
-            print("Bunday menu mavjud emas! ")
+            console.print("Bunday menu mavjud emas! ", style="bold red")
 
 main()

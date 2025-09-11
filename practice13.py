@@ -1,23 +1,22 @@
-# test case uchun suzlar: 
-# non, level, otto, radar, aka,  ikki, alla
+from rich.console import Console
+
+console = Console()
+
 
 def is_palindrome(text):
     _text = text[::-1]
     is_true = text == _text
-
     return is_true
 
 def main():
-
     text = input("Matn kiriting: ")
-    is_palindrome(text)
     is_true = is_palindrome(text)
 
     if is_true:
-        print(is_true)
-        print("Ha, Haqiqatdan ham matnning teskari uqilgani ham bir biriga teng!")
-
+        console.print(is_true, style="bold green")
+        console.print("Haqiqatdan ham matnning teskari o‘qilgani bir xil!", style="green")
     else:
-        print("Yo`q, Matn teskari uqilganda teng emas!")
+        console.print(is_true, style="bold red")
+        console.print("Matn teskari o‘qilganda teng emas!", style="red")
 
 main()

@@ -1,20 +1,22 @@
+from rich.console import Console
 
-questions = "O`zbekistonda nechta viloyat bor?"
+console = Console()
 
-correct_answer = "12"
+def ask_question(question, correct_answer):
+    entered = input(question)
 
-print(questions)
+    if check_answer(entered, correct_answer):
+        console.print("To`g`ri topdingiz! ", style="bold green")
 
-print("Variantlar: \n13 ta \n11 ta \n10 ta \n12 ta")
-
-user_answer = input("> ")
+    else:
+        console.print("Noto`g`ri javob !", style="bold red")
 
 def check_answer(user_answer, correct_answer):
+    result = user_answer.lower() == correct_answer.lower()
     
-    if user_answer == "12":
-        print("Tog`ri topdingiz! ")
-    
-    else:
-        print("Noto`g`ri javob!! ")
+    return result
 
-check_answer(user_answer, correct_answer)
+def quiz():
+    ask_question("O`zbekiston poytaxti qayer ? ", "Toshkent")
+
+quiz()

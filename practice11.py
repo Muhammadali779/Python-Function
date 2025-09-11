@@ -1,40 +1,45 @@
+from rich.console import Console
+
+console = Console()
+
+
 def calculate_tax(salary):
     if salary >= 5_000_000.00:
-        salary += salary * 0.2
+        tax = salary * 0.2
     
     else:
-        salary += salary * 0.13
+        tax = salary * 0.13
 
-    return salary
+    return tax
 
 def main():
     while True:
 
         salary = float(input("Maoshingizni kiriting: "))
-        salary = calculate_tax(salary)
+        tax = calculate_tax(salary)
 
         if salary >= 5_000_000.00:
-            print(f"20% soliq stavkasi bilan umumiy maoshingiz: {salary}")
+            console.print(f"20% soliq stavkasi bilan umumiy soliq: {tax}", style="bold yellow")
 
         elif salary < 5_000_000:
-            print(f"13% soliq stavkasi bilan umumiy maoshingiz: {salary}")
+            console.print(f"13% soliq stavkasi bilan umumiy soliq: {tax}", style="bold yellow")
         
         else:
-            print("Maosh manfiy bo`lmaydi! ")
+            console.print("Maosh manfiy bo`lmaydi! ", style="red")
 
-        print("Dasturni tugatamizmi? ")
-        print("1. Ha")
-        print("2. Yo`q")
+        console.print("Dasturni tugatamizmi? ", style="cyan")
+        console.print("1. Ha", style="cyan")
+        console.print("2. Yo`q", style="cyan")
 
         choise = input("> ")
 
         if choise == "1":
-            print("Dastur tugatildi! ")
+            console.print("Dastur tugatildi! ", style="red")
             break
         elif choise == "2":
             continue
         else:
-            print("Faqat 1 yoki 2 ni tanlashingiz mumkin! ")
+            console.print("Faqat 1 yoki 2 ni tanlashingiz mumkin! ",style="bold red")
 
 
 main()

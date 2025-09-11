@@ -1,25 +1,40 @@
+from rich.console import Console
+
+console = Console()
 
 def get_grade(score):
   
 
     if 90 <= score <= 100:
-        return "A"
+        console.print("Natija A`lo: A", style="bold green")
+
+        return f"Balingiz: {score}"
     
     elif 80 <= score < 90:
-        return "B"
+        console.print("Natija Yaxshi: B", style="bold cyan")
+
+        return f"Balingiz: {score}"
     
     elif 70 <= score < 80:
-        return "C"
+        console.print("Natija Qoniqarli: C", style="bold yellow")
+        
+        return f"Balingiz: {score}"
     
     elif 60 <= score < 70:
-        return "F"
+        console.print("Natija Qoniqarsiz: F", style="bold red")
+        
+        return f"Balingiz: {score}"
     
     elif 0 <= score < 60:
-        print("Natija yomon! ")
+        console.print("Natija Yomon! ", style="bold red")
+        
+        return f"Balingiz: {score}"
         
     
     else:
-        print("Ball faqat (0-100) oralig`ida bo`lishi kerak")
+        text = console.print(f"Ball faqat (0-100) oralig`ida bo`lishi kerak", style="italic black")
+
+        return f"Siz xato kiritgan ball: {score}"
         
 
 score = int (input("Ball  kiriting: "))

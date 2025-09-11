@@ -1,15 +1,19 @@
+from rich.console import Console
+
+console = Console()
+
 # F = 9/5 * C +32 selsiydan farangetga utish formulasi
 # C = 5/9 * (F-32) Farangeytdan selsiyga utish
 
 def show_menu():
-    print("""
+    console.print("""
 |-------------MENU-------------|
 | 1 - Selsiydan Farangetga     |
 | 2 - Farangetdan Selsiyga     |
 | 3 - Dasturni yakunlash       |
 |______________________________|
           
-""")
+""", style="cyan")
 
 def c_to_f(celsius):
 
@@ -33,19 +37,19 @@ def main():
         if check == "1":
             celsius = float(input("Selsiyning qiymatini kiriting: "))
             farangeyt = c_to_f(celsius)
-            print (f"{celsius}==> {farangeyt} (Farangeyt)ga teng ")
+            console.print (f"{celsius}==> {farangeyt} (Farangeyt)ga teng ", style="yellow")
 
         elif check == "2":
             fahrenheit = float(input("Farangeytning qiymatini kiriting: "))
             celsius = f_to_c(fahrenheit)
-            print (f"{fahrenheit}==> {celsius} (Selsiy)ga teng ")
+            console.print (f"{fahrenheit}==> {celsius} (Selsiy)ga teng ", style="yellow")
 
         elif check == "3":
-            print("Dastur tugadi! ")
+            console.print("Dastur tugadi! ", style="bold blue")
             break
         
         else:
-            print("Bunday menu mavjud emas!")
+            console.print("Bunday menu mavjud emas!", style="red")
             
 main()
 
